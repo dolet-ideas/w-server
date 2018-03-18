@@ -1,9 +1,9 @@
 const path = require('path');
 process.env.NODE_ENV = 'development';
+// import Icon from './icon.png';
 
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
-// process.env.NODE_ENV = production;
 config = {
   entry: "./src/js/common.js",
   output: {
@@ -37,7 +37,7 @@ config = {
         use: [
           {
             loader: "html-loader",
-            options: { minimize: true }
+            options: { minimize: false }
           }
         ]
       }
@@ -48,6 +48,10 @@ config = {
         use: {
           loader: "babel-loader"
         }
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader']
       }
       // { test: /\.ts$/, use: "ts-loader" },
       // {

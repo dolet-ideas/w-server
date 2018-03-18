@@ -1,47 +1,47 @@
-// process.env.NODE_ENV = 'development';
-// console.log('START');
-console.log(process.env.NODE_ENV);
-console.log('==>');
+const path = require('path');
+process.env.NODE_ENV = 'development';
 
 const HtmlWebPackPlugin = require("html-webpack-plugin");
- if (process.env.NODE_ENV !== 'production') {
-     console.log('Looks like we are in development mode!');
-  }
+
 // process.env.NODE_ENV = production;
 config = {
   entry: "./src/js/common.js",
   output: {
-    filename: "./dist/js/bundle.js"
+    path: path.join(__dirname, "../doc"),
+    filename: "./js/bundle.js",
+    chunkFilename: '[name].js'
   },
   // devServer: {
-  //   contentBase: "./dist"
+  //   contentBase: path.join(__dirname, "doc"),
+  //   compress: true,
+  //   port: 3000
   // },
   module: {
     rules: [
-      {   
+      {
         test: /\.sass$/,
         use: [{
-            loader: "style-loader" // creates style nodes from JS strings
+          loader: "style-loader" // creates style nodes from JS strings
         }, {
-            loader: "css-loader" // translates CSS into CommonJS
+          loader: "css-loader" // translates CSS into CommonJS
         }, {
-            loader: "sass-loader", // compiles Sass to CSS
-            options: {
-              includePaths: ["src/style.ssas", "dist/style.css"]
-            }
+          loader: "sass-loader", // compiles Sass to CSS
+          options: {
+            includePaths: ["src/style.ssas", "dist/css/style.css"]
+          }
         },
         ]
-      },    
+      },
       {
         test: /\.html$/,
         use: [
           {
             loader: "html-loader",
-            options: { minimize: true }
+            options: { minimize: false }
           }
         ]
       }
-    ,
+      ,
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -57,14 +57,15 @@ config = {
       //     loader: "babel-loader"
       //   }
       // }
-    ]},
+    ]
+  },
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
     }),
+    // new ExtractTextPlugin('bundle.css')
   ],
 }
-console.log('=>', config);
 
 module.exports = config;

@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --mode development --open --config ./config/development.webpack.config.js ",
     "build": "webpack --mode production",
-    "watch": "webpack --mode development  --config ./config/development.webpack.config.js --watch "
+    "doc": "webpack --mode development  --config ./config/doc.webpack.config.js "
   },
   "keywords": [],
   "devDependencies": {
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "css-loader": "^0.28.10",
+    "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.0.3",
     "path": "^0.12.7",
     "pixi.js": "^4.7.0",
