@@ -27,7 +27,7 @@ config = {
         }, {
             loader: "sass-loader", // compiles Sass to CSS
             options: {
-              includePaths: ["src/style.ssas", "dist/style.css"]
+              includePaths: ["src/style.ssas", "dist/css/style.css"]
             }
         },
         ]
@@ -63,6 +63,7 @@ config = {
       template: "./src/index.html",
       filename: "./index.html"
     }),
+    // new ExtractTextPlugin('bundle.css')
   ],
 }
 
