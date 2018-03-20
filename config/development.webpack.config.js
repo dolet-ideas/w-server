@@ -20,17 +20,12 @@ config = {
     rules: [
       {   
         test: /\.sass$/,
-        use: [{
-            loader: "style-loader" // creates style nodes from JS strings
-        }, {
-            loader: "css-loader" // translates CSS into CommonJS
-        }, {
-            loader: "sass-loader", // compiles Sass to CSS
-            options: {
-              includePaths: ["src/style.ssas", "dist/css/style.css"]
-            }
-        },
-        ]
+        use: [{loader: "style-loader"}, 
+              {loader: "css-loader"}, 
+              {loader: "sass-loader",
+                options: { includePaths: ["src/style.ssas", "dist/css/style.css"]}
+              },
+             ]
       },    
       {
         test: /\.html$/,
@@ -45,9 +40,7 @@ config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: {loader: "babel-loader"}
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
