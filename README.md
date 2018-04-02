@@ -1,4 +1,4 @@
-# w - SERVER
+# W - SERVER
 
 Template easy-server on use  node.js, webpack,babel-js, sass
 
@@ -16,7 +16,9 @@ git clone this repo
 ```
 yarn
 yarn start
-
+```
+#### you can upgrade's
+```
 yarn outdated
 yarn upgrade
 

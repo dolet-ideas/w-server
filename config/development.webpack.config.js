@@ -2,17 +2,23 @@ const path = require('path');
 process.env.NODE_ENV = 'development';
 // import Icon from './icon.png';
 
+let distPaths = {
+  // dist - original path
+  // doc - for github pages
+  root: "dist"
+}
+
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 config = {
   entry: "./src/js/common.js",
   output: {
-    path:  path.join(__dirname, "../dist"),
+    path:  path.join(__dirname, "../"+distPaths.root),
     filename: "./js/bundle.js",
     chunkFilename: '[name].js'
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, distPaths.root),
     compress: true,
     port: 3000
   },
@@ -23,7 +29,7 @@ config = {
         use: [{loader: "style-loader"}, 
               {loader: "css-loader"}, 
               {loader: "sass-loader",
-                options: { includePaths: ["src/style.ssas", "dist/css/style.css"]}
+                options: { includePaths: ["src/style.ssas", distPaths+"/css/style.css"]}
               },
              ]
       },    

@@ -1,37 +1,38 @@
 const path = require('path');
 process.env.NODE_ENV = 'development';
+// import Icon from './icon.png';
+
+let distPaths = {
+  // dist - original path
+  // doc - for github pages
+  root: "doc"
+}
 
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
-// process.env.NODE_ENV = production;
 config = {
   entry: "./src/js/common.js",
   output: {
-    path: path.join(__dirname, "../doc"),
+    path:  path.join(__dirname, "../"+distPaths.root),
     filename: "./js/bundle.js",
     chunkFilename: '[name].js'
   },
-  // devServer: {
-  //   contentBase: path.join(__dirname, "doc"),
-  //   compress: true,
-  //   port: 3000
-  // },
+  devServer: {
+    contentBase: path.join(__dirname, distPaths.root),
+    compress: true,
+    port: 3000
+  },
   module: {
     rules: [
-      {
+      {   
         test: /\.sass$/,
-        use: [{
-          loader: "style-loader" // creates style nodes from JS strings
-        }, {
-          loader: "css-loader" // translates CSS into CommonJS
-        }, {
-          loader: "sass-loader", // compiles Sass to CSS
-          options: {
-            includePaths: ["src/style.ssas", "dist/css/style.css"]
-          }
-        },
-        ]
-      },
+        use: [{loader: "style-loader"}, 
+              {loader: "css-loader"}, 
+              {loader: "sass-loader",
+                options: { includePaths: ["src/style.ssas", distPaths+"/css/style.css"]}
+              },
+             ]
+      },    
       {
         test: /\.html$/,
         use: [
@@ -41,13 +42,15 @@ config = {
           }
         ]
       }
-      ,
+    ,
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: {loader: "babel-loader"}
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader']
       }
       // { test: /\.ts$/, use: "ts-loader" },
       // {
@@ -57,8 +60,7 @@ config = {
       //     loader: "babel-loader"
       //   }
       // }
-    ]
-  },
+    ]},
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",
