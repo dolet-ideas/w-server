@@ -48,11 +48,22 @@ config = {
         exclude: /node_modules/,
         use: {loader: "babel-loader"}
       },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader']
-      }
-      // { test: /\.ts$/, use: "ts-loader" },
+      // {
+      //   test: /\.(png|svg|jpg|gif)$/,
+      //   use: ['file-loader']
+      // },
+    //   {
+    //     test: /\.(jpg|jpeg|gif|png|ico)$/,
+    //     exclude: /node_modules/,
+    //     loader:'file-loader?name=img/[name].[ext]&context=./app/images'
+    //  },
+     {
+      test: /\.(jpg|jpeg|gif|png|ico)$/,
+      exclude: /node_modules/,
+      loader:'file-loader?name=img/[name].[ext]&context=./app/images'
+   }
+   
+     // { test: /\.ts$/, use: "ts-loader" },
       // {
       //   test: /\.js$/,
       //   exclude: /node_modules/,
