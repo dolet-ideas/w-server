@@ -1,6 +1,11 @@
 # W - SERVER
 
-Template easy-server on use  node.js, webpack,babel-js, sass
+Template easy-server.
+
+### Used tools:
+* webpack v. 4.12.0
+* babel-core v. 6.26.3
+* sass-loader v. 7.0.3 ...
 
 ## Getting Started
 
