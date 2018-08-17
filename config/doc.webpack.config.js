@@ -58,7 +58,7 @@ config = {
     //     loader:'file-loader?name=img/[name].[ext]&context=./app/images'
     //  },
      {
-      test: /\.(jpg|jpeg|gif|png|ico)$/,
+      test: /\.(jpg|jpeg|gif|png|ico|svg)$/,
       exclude: /node_modules/,
       loader:'file-loader?name=img/[name].[ext]&context=./app/images'
    }
