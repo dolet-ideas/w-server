@@ -1,4 +1,9 @@
 const path = require('path');
+const autoprefixer = require('autoprefixer');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+
 process.env.NODE_ENV = 'development';
 // import Icon from './icon.png';
 
@@ -6,9 +11,9 @@ let distPaths = {
   // dist - original path
   // doc - for github pages
   root: "dist"
+  // root: "doc"
 }
 
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 config = {
   entry: "./src/js/common.js",
@@ -57,7 +62,8 @@ config = {
         test: /\.(jpg|jpeg|gif|png|ico|svg)$/,
         exclude: /node_modules/,
         loader:'file-loader?name=img/[name].[ext]&context=./app/images'
-     }
+     },
+     
       // { test: /\.ts$/, use: "ts-loader" },
       // {
       //   test: /\.js$/,
@@ -73,6 +79,12 @@ config = {
       filename: "./index.html"
     }),
     // new ExtractTextPlugin('bundle.css')
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
   ],
 }
 
