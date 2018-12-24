@@ -1,10 +1,9 @@
-const path = require('path');
-const autoprefixer = require('autoprefixer');
+const path = require("path");
+const autoprefixer = require("autoprefixer");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = "development";
 // import Icon from './icon.png';
 
 let distPaths = {
@@ -12,15 +11,14 @@ let distPaths = {
   // doc - for github pages
   root: "dist"
   // root: "doc"
-}
-
+};
 
 config = {
   entry: "./src/js/common.js",
   output: {
-    path:  path.join(__dirname, "../"+distPaths.root),
+    path: path.join(__dirname, "../" + distPaths.root),
     filename: "./js/bundle.js",
-    chunkFilename: '[name].js'
+    chunkFilename: "[name].js"
   },
   devServer: {
     contentBase: path.join(__dirname, distPaths.root),
@@ -29,16 +27,20 @@ config = {
   },
   module: {
     rules: [
-      {   
+      {
         test: /\.sass$/,
-        use: [{
-              loader: "style-loader" // creates style nodes from JS strings
-          }, {
-              loader: "css-loader" // translates CSS into CommonJS
-          }, {
-              loader: "sass-loader" // compiles Sass to CSS
-        }]
-      },    
+        use: [
+          {
+            loader: "style-loader" // creates style nodes from JS strings
+          },
+          {
+            loader: "css-loader" // translates CSS into CommonJS
+          },
+          {
+            loader: "sass-loader" // compiles Sass to CSS
+          }
+        ]
+      },
       {
         test: /\.html$/,
         use: [
@@ -47,12 +49,11 @@ config = {
             options: { minimize: false }
           }
         ]
-      }
-    ,
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {loader: "babel-loader"}
+        use: ["babel-loader", "eslint-loader"]
       },
       // {
       //   test: /\.(png|svg|jpg|gif)$/,
@@ -61,9 +62,9 @@ config = {
       {
         test: /\.(jpg|jpeg|gif|png|ico|svg)$/,
         exclude: /node_modules/,
-        loader:'file-loader?name=img/[name].[ext]&context=./app/images'
-     },
-     
+        loader: "file-loader?name=img/[name].[ext]&context=./app/images"
+      }
+
       // { test: /\.ts$/, use: "ts-loader" },
       // {
       //   test: /\.js$/,
@@ -72,7 +73,8 @@ config = {
       //     loader: "babel-loader"
       //   }
       // }
-    ]},
+    ]
+  },
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",
@@ -85,7 +87,7 @@ config = {
       filename: "[name].css",
       chunkFilename: "[id].css"
     })
-  ],
-}
+  ]
+};
 
 module.exports = config;
