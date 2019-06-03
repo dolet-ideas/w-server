@@ -2,6 +2,7 @@ const path = require("path");
 const autoprefixer = require("autoprefixer");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const Fiber = require('fibers');
 
 process.env.NODE_ENV = "development";
 // import Icon from './icon.png';
@@ -37,7 +38,10 @@ config = {
             loader: "css-loader" // translates CSS into CommonJS
           },
           {
-            loader: "sass-loader" // compiles Sass to CSS
+            loader: "sass-loader", // compiles Sass to CSS
+            options: {
+                implementation: require("sass")
+            }
           }
         ]
       },
